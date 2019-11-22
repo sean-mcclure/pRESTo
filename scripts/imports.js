@@ -31,33 +31,31 @@ function pop_imports() {
         "margin-bottom": "20px",
         "color": "lightgrey"
     })
-    if(typeof(az.hold_value.imports) !== 'undefined') {
-    az.add_code('imports_modal_content', 1, {
-			"this_class": "imports_code",
-			"contenteditable": true,
-			"spellcheck": false,
-			"strip_on_paste": true,
-			"code" : az.hold_value.imports
-		})
-		} else {
-		az.add_code('imports_modal_content', 1, {
-			"this_class": "imports_code",
-			"contenteditable": true,
-			"spellcheck": false,
-			"strip_on_paste": true
-		})
-		}
-		az.style_code('imports_code', 1, {
-			"height" : "200px",
-			"max-height": "200px",
-			"outline": 0
-		})
-		az.add_event("imports_code", 1, {
-    "type": "as_change",
-    "function": function() {
-        az.hold_value.imports = $('.imports_code').html()
+    if (typeof(az.hold_value.imports) !== 'undefined') {
+        az.add_code('imports_modal_content', 1, {
+            "this_class": "imports_code",
+            "contenteditable": true,
+            "spellcheck": false,
+            "strip_on_paste": true,
+            "code": az.hold_value.imports
+        })
+    } else {
+        az.add_code('imports_modal_content', 1, {
+            "this_class": "imports_code",
+            "contenteditable": true,
+            "spellcheck": false,
+            "strip_on_paste": true
+        })
     }
-})
-
-
+    az.style_code('imports_code', 1, {
+        "height": "200px",
+        "max-height": "200px",
+        "outline": 0
+    })
+    az.add_event("imports_code", 1, {
+        "type": "as_change",
+        "function": function() {
+            az.hold_value.imports = $('.imports_code').html()
+        }
+    })
 }
