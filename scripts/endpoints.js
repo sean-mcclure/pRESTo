@@ -9,13 +9,13 @@ function add_endpoint() {
             })
         }
         if (!check_python.ends_with_colon) {
-            alert('The first line of your function must end with ":"')
+            fancy_alert('The first line of your function must end with ":"')
         }
         if (!check_python.begins_with_def) {
-            alert('Your function must begin with "def"')
+            fancy_alert('Your function must begin with "def"')
         }
         if (check_if_added.already_added) {
-            alert('You cannot add 2 functions with the same name"')
+            fancy_alert('You cannot add 2 functions with the same name"')
         }
     } else {
         az.add_button("scroll_endpoints", 1, {
@@ -57,20 +57,23 @@ function add_endpoint() {
             "border": 0
         })
         az.add_icon("hold_endpoint_options_cells", (az.last_class_instance("endpoint") * 3) - 2, {
-            "this_class": "test_endpoint",
+            "this_class": "show_api_call",
             "icon_class": "fa-cog"
         })
-        az.all_style_icon("test_endpoint", {
+        az.all_style_icon("show_api_call", {
             "color": "rgb(255, 82, 82)",
             "margin": "4px",
             "font-size": "34px",
             "float": "left"
         })
-        az.add_event("test_endpoint", az.last_class_instance("test_endpoint"), {
+        az.add_event("show_api_call", az.last_class_instance("show_api_call"), {
                 "type": "click",
                 "function": function(this_id) {
-                    f_name = $('.endpoint_title').eq(az.get_target_instance(this_id) * 3) - 2).text()
-                call_function(f_name)
+
+                    function_text = az.fetch_data("endpoint", az.get_target_instance(this_id), {
+            "key": "store_code"
+            })
+                   call_function(function_text)
             }
         })
     az.add_text("hold_endpoint_options_cells", (az.last_class_instance("endpoint") * 3) - 1, {

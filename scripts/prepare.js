@@ -11,8 +11,9 @@ az.add_sections({
 })
 az.style_sections("my_sections", 1, {
     "background": "#227093",
-    "height": "auto",
-    "border-radius": "8px"
+    "height": "100%",
+    "border-radius": "8px",
+    "width" : "95%"
 })
 az.add_layout("my_sections", 1, {
     "this_class": "title_layout",

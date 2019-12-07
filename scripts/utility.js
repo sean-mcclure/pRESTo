@@ -92,3 +92,28 @@ function placeCaretAtEnd(el) {
         textRange.select();
     }
 }
+
+function fancy_alert(msg) {
+    az.add_modal({
+        "this_class": "alert_modal",
+        "content_class": "alert_modal_content"
+    })
+    az.style_modal("alert_modal", 1, {
+        "width": "auto",
+        "height": "auto",
+        "padding": "10px",
+        "background": "#227093",
+        "border": "2px solid #f7f1e3"
+    })
+    az.add_text("alert_modal_content", 1, {
+        "this_class": "alert_modal_msg",
+        "text": msg
+    })
+    az.style_text("alert_modal_msg", 1, {
+        "align": "center",
+        "font-size": "18px",
+        "font-family": "Tomorrow",
+        "color": "white"
+    })
+}
+
