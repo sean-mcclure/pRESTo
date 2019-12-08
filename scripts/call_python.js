@@ -6,7 +6,7 @@ function update_script(code) {
         "url": az.hold_value.settings_url + ":" + az.hold_value.settings_port + "/update_script/",
         "parameters": params,
         "done": function(data) {
-            //alert('endpoint created')
+            console.log('endpoint created')
         }
     })
 }
@@ -45,15 +45,28 @@ function call_function(function_text) {
         "border-radius": "10px",
         "outline": 0
     })
+    az.hold_value.function_name = az.get_everything_between(function_text.split('\n')[0], 'def ', '(').split(',')
     az.hold_value.function_args = az.get_everything_between(function_text.split('\n')[0], '(', ')').split(',')
     az.add_text("api_code", 1, {
         "this_class": "show_params",
         "text": "params = {<br>&nbsp;&nbsp;&nbsp;&nbsp;"
     })
+    if(az.hold_value.function_args[0] !== "") {
+    az.add_text("show_params", 1, {
+        "this_class": "show_params",
+        "text": '"function" : "' + az.hold_value.function_name + '",<br>&nbsp;&nbsp;&nbsp;&nbsp;'
+    })
+    } else {
+    az.add_text("show_params", 1, {
+        "this_class": "show_params",
+        "text": '"function" : "' + az.hold_value.function_name + '"<br>&nbsp;&nbsp;&nbsp;&nbsp;'
+    })
+    }
+    if(az.hold_value.function_args[0] !== "") {
     az.call_multiple({
         "iterations": az.hold_value.function_args.length,
         "function": function(elem, index) {
-            if (index < az.hold_value.function_args.length) {
+            if (index < az.hold_value.function_args.length - 1) {
                 var use_breaker = ': "...",<br>&nbsp;&nbsp;&nbsp;&nbsp;'
             } else {
                 var use_breaker = ': "..."<br>'
@@ -64,6 +77,7 @@ function call_function(function_text) {
             })
         }
     })
+    }
     az.add_text("api_code", 1, {
         "this_class": "show_params",
         "text": "}<br><br>"
@@ -154,12 +168,9 @@ function call_function(function_text) {
         "outline": 0
     })
     az.add_event("test_endpoint", 1, {
-         "type" : "click",
-         "function" : function() {
-             az.animate_element("test_endpoint", 1, {
-                 "type" : "spin"
-             })
-             eval($('.api_code').innerText())
-         }
+        "type": "click",
+        "function": function() {
+            eval($('.api_code').innerText())
+        }
     })
 }

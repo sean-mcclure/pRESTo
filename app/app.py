@@ -13,8 +13,12 @@ def add_headers(response):
 
 @app.route("/call_function/", methods=["GET"])
 def call_function():
-    response = eval(request.args.get('function'))
-    return(jsonify(response))
+    print()
+    passed_function = request.args.get('function')
+    args = dict(request.args)
+    values = list(args.values())[1:]
+    res = globals()[passed_function](*tuple(values))
+    return(jsonify(res))
 
 @app.route("/update_script/", methods=["GET"])
 def update_script():

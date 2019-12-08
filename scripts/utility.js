@@ -67,6 +67,7 @@ function check_if_already_added(f) {
         }
     };
 })(jQuery);
+/*
 $(document).delegate('.function_code', 'keydown', function(e) {
     var keyCode = e.keyCode || e.which;
     if (keyCode == 13) {
@@ -75,6 +76,7 @@ $(document).delegate('.function_code', 'keydown', function(e) {
         placeCaretAtEnd($('.function_code').get(0))
     }
 });
+*/
 
 function placeCaretAtEnd(el) {
     el.focus();

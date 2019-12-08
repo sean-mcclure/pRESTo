@@ -1,2 +1,4 @@
-def getit(a,b):
-    return(a)
+def gogo():
+    List = ["Shriya", "Lavina","Sampreeti" ]
+    List.reverse()
+    return(List)
